@@ -826,3 +826,4 @@ function mettreAJourCamera() {
 function rendreGUI() {
   // Votre logique pour rendre le GUI
 }
+//test sandbox
