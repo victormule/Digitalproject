@@ -1,0 +1,42 @@
+html{
+
+  display:flex;
+  flex-direction:column-r;
+  align-items: center;
+  justify-content:center;
+  background-image: url('assets/blackwallpaper.png');
+  background-size: contain; /* L'image sera proportionnée à l'écran */
+
+  background-position: center; /* Centre l'image */
+}
+body{
+
+  box-sizing:border-box;
+  display:flex;
+  align-items: center;
+  justify-content:center;
+  overflow: hidden;
+ 
+  
+}
+#loader {
+  width: 150px;
+  height: 150px;
+  border: 12px solid #f3f3f3;
+  border-top: 12px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 200px auto;
+  z-index: -100; /* Placer la barre de chargement en arrière-plan */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
