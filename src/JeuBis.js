@@ -625,80 +625,72 @@ new p5((sketch) => {
 
     // **Chargement des ressources**
     sketch.preload = function () {
-        console.log("Préchargement démarré");
-        spritesJoueur = chargerSpritesPersonnage('Player', sketch);
-        spritesPNJ = chargerSpritesPersonnage('NPC', sketch);
-        spritesPNJ1 = chargerSpritesPersonnage('NPC1', sketch);
-        spritesPNJ3 = chargerSpritesPersonnage('NPC2', sketch);
-    
-        gestionnaireRessources.chargerImage('bg1', '/assets/plaine1.gif');
-        gestionnaireRessources.chargerImage('bg2', '/assets/chambre.png');
-    
-        bg1 = gestionnaireRessources.getImage('bg1');
-        bg2 = gestionnaireRessources.getImage('bg2');
-
-        if (bg1 && bg2) {
-          assetsLoaded = true;
-        }
-
-        console.log("Images chargées:", { bg1, bg2 });
-        console.log("Préchargement terminé");
+      console.log("Préchargement démarré");
+  
+      // Charger les sprites et les images
+      spritesJoueur = chargerSpritesPersonnage('Player', sketch);
+      spritesPNJ = chargerSpritesPersonnage('NPC', sketch);
+      spritesPNJ1 = chargerSpritesPersonnage('NPC1', sketch);
+      spritesPNJ3 = chargerSpritesPersonnage('NPC2', sketch);
+  
+      gestionnaireRessources.chargerImage('bg1', '/assets/plaine1.gif');
+      gestionnaireRessources.chargerImage('bg2', '/assets/chambre.png');
     };
 
     sketch.setup = function () {
-        console.log("Setup démarré");
-        let cnv = sketch.createCanvas(960, 3400);
-        cnv.position(0, 0, "relative");
-        setupGUI();
-
-        carte1 = new Carte(grille1, bg1);
-        carte2 = new Carte(grille2, bg2);
-
-        TELEPORTER_REGISTRY['T1'] = { carte: carte1, x: 256, y: 752, destination: 'T2' };
-        TELEPORTER_REGISTRY['T2'] = { carte: carte2, x: 256, y: 720, destination: 'T1' };
-        TELEPORTER_REGISTRY['T3'] = { carte: carte1, x: 256, y: 752, destination: 'T4' };
-        TELEPORTER_REGISTRY['T4'] = { carte: carte2, x: 256, y: 656, destination: 'T3' };
-
-        carte1.teleporteurs = { 'T1': TELEPORTER_REGISTRY['T1'], 'T3': TELEPORTER_REGISTRY['T3'] };
-        carte2.teleporteurs = { 'T2': TELEPORTER_REGISTRY['T2'], 'T4': TELEPORTER_REGISTRY['T4'] };
-
-        carteActuelle = carte1;
-        grilleActuelle = carteActuelle.grille;
-
-        joueur = new Joueur(448, 720, spritesJoueur);
-
-        cameraY = joueur.y - sketch.windowHeight / 2;
-        cameraY = sketch.constrain(cameraY, 0, sketch.height - sketch.windowHeight);
-
-        pnjs.push(new PNJ(480, 752, spritesPNJ, carte1, true, 2, 0.005));
-        pnjs.push(new PNJ(544, 752, spritesPNJ1, carte1, false));
-        pnjs.push(new PNJRegardantJoueur(192, 688, spritesPNJ3, carte2));
-        pnjs.push(new PNJ(320, 688, spritesPNJ1, carte2, true, 2, 0.01));
-
-        console.log("Setup terminé");
+      // Vérifie que toutes les images sont bien chargées avant de continuer
+      if (gestionnaireRessources.getImage('bg1') && gestionnaireRessources.getImage('bg2')) {
+          console.log("Setup démarré");
+  
+          bg1 = gestionnaireRessources.getImage('bg1');
+          bg2 = gestionnaireRessources.getImage('bg2');
+          assetsLoaded = true;
+  
+          // Initialisation une fois les assets prêts
+          let cnv = sketch.createCanvas(960, 3400);
+          cnv.position(0, 0, "relative");
+          setupGUI();
+  
+          carte1 = new Carte(grille1, bg1);
+          carte2 = new Carte(grille2, bg2);
+  
+          TELEPORTER_REGISTRY['T1'] = { carte: carte1, x: 256, y: 752, destination: 'T2' };
+          TELEPORTER_REGISTRY['T2'] = { carte: carte2, x: 256, y: 720, destination: 'T1' };
+          TELEPORTER_REGISTRY['T3'] = { carte: carte1, x: 256, y: 752, destination: 'T4' };
+          TELEPORTER_REGISTRY['T4'] = { carte: carte2, x: 256, y: 656, destination: 'T3' };
+  
+          carteActuelle = carte1;
+          grilleActuelle = carteActuelle.grille;
+          joueur = new Joueur(448, 720, spritesJoueur);
+  
+          // Initialisation de la caméra et des PNJs
+          cameraY = joueur.y - sketch.windowHeight / 2;
+          cameraY = sketch.constrain(cameraY, 0, sketch.height - sketch.windowHeight);
+          pnjs.push(new PNJ(480, 752, spritesPNJ, carte1, true, 2, 0.005));
+          pnjs.push(new PNJ(544, 752, spritesPNJ1, carte1, false));
+          pnjs.push(new PNJRegardantJoueur(192, 688, spritesPNJ3, carte2));
+          pnjs.push(new PNJ(320, 688, spritesPNJ1, carte2, true, 2, 0.01));
+  
+          console.log("Setup terminé");
+      } else {
+          console.error("Les images ne sont pas prêtes. Veuillez patienter...");
+      }
     };
 
     sketch.draw = function () {
-      // Si les images ne sont pas encore chargées, affichez un message de chargement et vérifiez à nouveau
-      if (!bg1 || !bg2) {
+      if (!assetsLoaded) {
+          // Écran de chargement tant que les images ne sont pas prêtes
           sketch.background(255);
           sketch.textAlign(sketch.CENTER, sketch.CENTER);
           sketch.textSize(24);
-          sketch.text("Chargement des images...", sketch.width / 2, sketch.height / 2);
-          
-          // Recharger les images et vérifier leur statut
-          bg1 = gestionnaireRessources.getImage('bg1');
-          bg2 = gestionnaireRessources.getImage('bg2');
-          
-          if (bg1 && bg2) {
-              assetsLoaded = true; // Une fois chargées, définissez l'indicateur
-              console.log("Images chargées avec succès.");
-              sketch.setup(); // Ré-exécutez le setup pour démarrer avec les images prêtes
-          }
+          sketch.text("Chargement...", sketch.width / 2, sketch.height / 2);
+  
+          // Réessayer d'appeler `setup` pour vérifier si les images sont chargées
+          sketch.setup();
           return;
       }
-      
-      // Si les assets sont chargés, continuez avec le rendu normal du jeu
+  
+      // Si assetsLoaded est vrai, exécuter la logique du jeu
       mettreAJourJeu();
       rendreJeu();
     };  
