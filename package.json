@@ -1,5 +1,22 @@
 {
+  "name": "p5-docker",
+  "version": "1.0.0",
+  "main": "src/LeJeu.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
   "dependencies": {
-    "apng-js": "^1.1.1"
+    "p5": "^1.11.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.10",
+    "vite-plugin-static-copy": "^2.0.0"
   }
 }
