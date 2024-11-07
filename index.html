@@ -8,8 +8,24 @@
     <meta name="description" content="Ocarina" />
     <meta name="author" content="Victor" />
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+    <script src="/lib/p5.js"></script>
+    <script src="/lib/p5.sound.min.js"></script>
   </head>
   <body>
-    <script src="/src/LeJeu.js" type="module"></script>
+    <button id="fullscreen-btn">Passer en plein écran</button>
+  <script>
+      document.getElementById("fullscreen-btn").addEventListener("click", function () {
+          if (document.documentElement.requestFullscreen) {
+              document.documentElement.requestFullscreen();
+          } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+              document.documentElement.mozRequestFullScreen();
+          } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
+              document.documentElement.webkitRequestFullscreen();
+          } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+              document.documentElement.msRequestFullscreen();
+          }
+      });
+  </script>
+    <script src="/src/JeuBis.js" type="module"></script>
   </body>
 </html>

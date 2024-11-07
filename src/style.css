@@ -1,24 +1,21 @@
 html{
-
   display:flex;
   flex-direction:column-r;
   align-items: center;
   justify-content:center;
-  background-image: url('../assets/blackwallpaper.png');
+  background-image: url('/assets/blackwallpaper.png');
   background-size: contain; /* L'image sera proportionnée à l'écran */
-
   background-position: center; /* Centre l'image */
 }
-body{
 
+body{
   box-sizing:border-box;
   display:flex;
   align-items: center;
   justify-content:center;
   overflow: hidden;
- 
-  
 }
+
 #loader {
   width: 150px;
   height: 150px;
