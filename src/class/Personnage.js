@@ -30,7 +30,7 @@ export class Personnage {
         if (this.x !== this.cibleX || this.y !== this.cibleY) {
             let deltaX = this.cibleX - this.x;
             let deltaY = this.cibleY - this.y;
-            let distance = sketch.sqrt(deltaX * deltaX + deltaY * deltaY);
+            let distance = this.sketch.sqrt(deltaX * deltaX + deltaY * deltaY);
 
             if (distance > this.vitesse) {
             // Déplacer le personnage vers la cible
@@ -51,7 +51,7 @@ export class Personnage {
         this.animer();
     }
         
-          // Méthode pour gérer l'animation du personnage
+    // Méthode pour gérer l'animation du personnage
     animer() {
         if (this.enMouvement) {
             this.animationCounter++;
@@ -88,7 +88,7 @@ export class Personnage {
         }
 
         if (spriteActuel) {
-            sketch.image(spriteActuel, this.x, this.y);
+            this.sketch.image(spriteActuel, this.x, this.y);
         } else {
             console.error(`spriteActuel est undefined pour direction: ${this.direction}, frameIndex: ${frameIndex}`);
         }

@@ -547,22 +547,22 @@ new p5((sketch) => {
               let posY = y * CONFIG.TAILLE_TUILE;
       
               // Dessiner les cases selon leur valeur
-              if (valeurCase === 1) {
-                // Cases de mur (noir)
-                sketch.fill(0);
-                sketch.noStroke();
-                sketch.rect(posX, posY, CONFIG.TAILLE_TUILE, CONFIG.TAILLE_TUILE);
-              } else if (typeof valeurCase === 'string' && valeurCase.startsWith('T')) {
-                // Cases de téléporteur (vert)
-                sketch.fill(0, 255, 0);
-                sketch.noStroke();
-                sketch.rect(posX, posY, CONFIG.TAILLE_TUILE, CONFIG.TAILLE_TUILE);
-              }
+              // if (valeurCase === 1) {
+              //   // Cases de mur (noir)
+              //   sketch.fill(0);
+              //   sketch.noStroke();
+              //   sketch.rect(posX, posY, CONFIG.TAILLE_TUILE, CONFIG.TAILLE_TUILE);
+              // } else if (typeof valeurCase === 'string' && valeurCase.startsWith('T')) {
+              //   // Cases de téléporteur (vert)
+              //   sketch.fill(0, 255, 0);
+              //   sketch.noStroke();
+              //   sketch.rect(posX, posY, CONFIG.TAILLE_TUILE, CONFIG.TAILLE_TUILE);
+              // }
       
               // Dessiner les lignes de la grille en rouge
-              sketch.noFill();
-              sketch.stroke(255, 0, 0);
-              sketch.rect(posX, posY, CONFIG.TAILLE_TUILE, CONFIG.TAILLE_TUILE);
+              // sketch.noFill();
+              // sketch.stroke(255, 0, 0);
+              // sketch.rect(posX, posY, CONFIG.TAILLE_TUILE, CONFIG.TAILLE_TUILE);
             }
           }
         }

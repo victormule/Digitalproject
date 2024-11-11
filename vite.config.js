@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [
     viteStaticCopy({
       targets: [
-        { src: 'src/JeuBis.js', dest: 'src' },
+        { src: 'src/sketch.js', dest: 'src' },
         { src: 'src/style.css', dest: 'src' }
       ]
     })

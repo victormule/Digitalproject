@@ -1,11 +1,10 @@
 // src/preload.js
 
-import { gestionnaireRessources } from './classes/GestionnaireRessources.js';
 import { chargerSpritesPersonnage } from './utils/loader.js';
 
 export let spritesJoueur, spritesPNJ, spritesPNJ1, spritesPNJ3;
 
-export function preload(sketch) {
+export function preload(sketch, gestionnaireRessources) {
     console.log('Préchargement démarré');
 
     // Charger les sprites et les images

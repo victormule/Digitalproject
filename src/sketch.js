@@ -1,12 +1,9 @@
 // src/sketch.js
-
-import { CONFIG } from './config.js';
-import { GestionnaireRessources } from './classes/GestionnaireRessources.js';
+import { GestionnaireRessources } from './class/GestionnaireRessources.js';
 import { preload } from './preload.js';
 import { setup } from './utils/setup.js';
 import { mettreAJourJeu } from './utils/gameLoop.js';
 import { rendreJeu } from './utils/draw.js';
-import { setupGUI } from './GUI.js';
 import p5 from 'p5';
 
 new p5((sketch) => {
@@ -15,11 +12,11 @@ new p5((sketch) => {
   let gestionnaireRessources = new GestionnaireRessources(sketch);
 
   sketch.preload = () => {
-    preload(sketch);
+    preload(sketch, gestionnaireRessources);
   };
 
   sketch.setup = () => {
-    setup(sketch);
+    setup(sketch, gestionnaireRessources);
     assetsLoaded = true;
   };
 

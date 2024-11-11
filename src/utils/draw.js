@@ -1,7 +1,6 @@
 // src/utils/draw.js
 
 import { carteActuelle, pnjs, cameraY, joueur } from './setup.js';
-import { CONFIG } from '../config.js';
 
 export function rendreJeu(sketch) {
     sketch.clear();
@@ -21,4 +20,4 @@ export function rendreJeu(sketch) {
     });
 
     sketch.pop();
-}
+};
