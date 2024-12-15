@@ -1,0 +1,8 @@
+pour envoyer les modification sur le sandbox.
+enregistrer les fichiers.
+
+git add .
+
+git commit -m "commentaire de ce que tu as fait"
+
+git push
